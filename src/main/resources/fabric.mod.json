@@ -1,0 +1,27 @@
+{
+	"schemaVersion": 1,
+	"id": "starlib",
+	"version": "${version}",
+	"name": "Starlib",
+	"description": "Another Lib mod",
+	"authors": [
+		"starcatcher"
+	],
+	"license": "MIT",
+	"icon": "assets/starlib/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.github.starcatcher21.starlib.Starlib"
+		]
+	},
+	"mixins": [
+		"starlib.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": ">=26.2 <26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
