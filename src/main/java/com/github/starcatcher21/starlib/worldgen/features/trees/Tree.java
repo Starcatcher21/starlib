@@ -13,6 +13,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HugeMushroomBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.levelgen.feature.Feature;
+
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -155,7 +157,11 @@ public class Tree {
                 if (i - 1 >= 0) {
                     prev = logs.stream().toList().get(i-1);
                 } else {
-                    prev = logs.stream().toList().get(i+1);
+                    if (i + 1 < logs.size()) {
+                        prev = logs.stream().toList().get(i + 1);
+                    } else {
+                        prev = logs.stream().toList().get(i);
+                    }
                 }
                 BlockState newLog = log.stream().toList().get(random.nextInt(log.size()));
                 if (newLog.getProperties().contains(BlockStateProperties.AXIS)) {
