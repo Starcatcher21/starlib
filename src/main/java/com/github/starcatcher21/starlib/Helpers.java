@@ -21,8 +21,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class Helpers {
-    public static ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureOf(String id) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, Identifier.fromNamespaceAndPath(Starlib.MOD_ID, id));
+    public static ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureOf(String namepsace, String id) {
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, Identifier.fromNamespaceAndPath(namepsace, id));
     }
     public static void spawnParticle(Level world, Vec3 pos, RandomSource random, ParticleOptions effect) {
         double d = pos.x() + random.nextDouble();
