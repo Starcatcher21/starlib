@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "com.github.starcatcher21.starlib.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "minVersion": "0.8",
+  "client": [
+    "CapeMixin",
+    "SplashTextMixin",
+    "SkinMixin"
+  ],
+  "mixins": [
+    "FluidBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

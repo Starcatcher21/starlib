@@ -1,0 +1,32 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "MIT"
+issueTrackerURL = ""
+
+[[mods]]
+modId = "starlib"
+version = "${version}"
+displayName = "Starlib"
+displayURL = ""
+iconFile = "assets/starlib/icon.png"
+authors = "starcatcher"
+description = '''
+Another Lib mod
+'''
+
+[[dependencies.starlib]]
+modId = "neoforge"
+type = "required"
+versionRange = "[1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.starlib]]
+modId = "minecraft"
+type = "required"
+versionRange = "[26.2,26.3)"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config = "starlib.mixins.json"
