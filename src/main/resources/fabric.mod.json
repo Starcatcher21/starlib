@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "starlib",
+  "version": "${version}",
+  "name": "Starlib",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.github.starcatcher21.starlib.StarlibEntrypoint"]
+  },
+  "mixins": [
+    "starlib.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric-api": "*",
+    "minecraft": ">=1.21.1",
+    "architectury": ">=13.0.0"
+  }
+}

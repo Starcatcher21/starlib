@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "com.github.starcatcher21.starlib.mixin",
+  "minVersion": "0.8",
+  "client": [
+    "CapeMixin",
+    "SplashTextMixin",
+    "SkinMixin"
+  ],
+  "mixins": [
+    "FluidBlockMixin",
+    "FlowingFluidMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
