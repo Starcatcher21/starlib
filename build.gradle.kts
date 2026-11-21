@@ -66,18 +66,17 @@ dependencies {
     }
 }
 
+val modVersion = project.version.toString()
+val mcVersion2 = stonecutter.current.version
+val loaderName = stonecutter.current.project.substringAfterLast('-', stonecutter.current.project)
+
 publishing {
     publications {
-        // Create a publication for each Stonecutter node
-        stonecutter.versions.forEach { node ->
-            create<MavenPublication>(project.mod.name + "-" + node.project) {
-                // Use the artifact from the node's project
-                artifact(project.tasks.named("jar")) // or the appropriate jar task
-                // Optionally set custom coordinates
-                groupId = project.group.toString() + "." + project.mod.name
-                artifactId = project.name
-                version = node.version.toString()
-            }
+        create<MavenPublication>("mavenJava") {
+            artifact(tasks.named("jar"))
+            groupId = "com.github.starcatcher21.starlib"
+            artifactId = "${modVersion}-${mcVersion2}"
+            version = loaderName
         }
     }
 }
