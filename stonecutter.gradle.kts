@@ -3,5 +3,10 @@ plugins {
     id("gg.meza.stonecraft")
 }
 
-stonecutter active "26.2-fabric" /* [SC] DO NOT EDIT */
+tasks.register("publishAll") {
+    group = "publishing"
+    dependsOn(stonecutter.versions.map { ":${it.project}:publishMod" })
+}
+
+stonecutter active "26.1.2-neoforge" /* [SC] DO NOT EDIT */
 

@@ -25,8 +25,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 //? if >= 26.2 {
-import net.minecraft.world.item.ItemStackTemplate;
-//? }
+/*import net.minecraft.world.item.ItemStackTemplate;
+*///? }
 
 public class FallingObject {
     private final static Random random = new Random();
@@ -120,10 +120,10 @@ public class FallingObject {
 
         if (world instanceof ServerLevel serverWorld) {
             //? if >= 26.2 {
-            ItemStack stack = new ItemStackTemplate(item.value()).create();
-            //? } else {
-            /*ItemStack stack = new ItemStack(item);
-             *///? }
+            /*ItemStack stack = new ItemStackTemplate(item.value()).create();
+            *///? } else {
+            ItemStack stack = new ItemStack(item);
+             //? }
 
             Entity entity = new ItemEntity(serverWorld, X + 0.5, Y + 0.5, Z + 0.5, stack);
             serverWorld.addFreshEntity(entity);

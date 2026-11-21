@@ -9,6 +9,7 @@ pluginManagement {
         maven("https://maven.architectury.dev")
         maven("https://maven.minecraftforge.net")
         maven("https://maven.neoforged.net/releases/")
+        maven("https://maven.firstdark.dev/releases")
     }
 }
 plugins {
@@ -27,7 +28,11 @@ stonecutter {
         }
 
         mc("1.21.1", "neoforge")
+        mc("26.1", "fabric", "neoforge")
+        mc("26.1.1", "fabric", "neoforge")
+        mc("26.1.2", "fabric", "neoforge")
         mc("26.2", "fabric", "neoforge")
+        mc("26.3", "fabric", "neoforge")
 
         vcsVersion = "26.2-fabric"
     }

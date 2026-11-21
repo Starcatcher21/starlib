@@ -17,9 +17,11 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-//? if >=1.21.2 {
+//? if >=1.21.2 && < 26.3 {
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-//?} else {
+//?} else if >= 26.3 {
+/*import net.minecraft.world.level.levelgen.feature.Feature;
+*///? } else {
 /*import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 *///?}
 import net.minecraft.world.phys.AABB;
@@ -29,10 +31,20 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class Helpers {
-    public static ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureOf(String namespace, String id) {
+    public static ResourceKey<
+            //? if < 26.3 {
+            ConfiguredFeature<?, ?>
+            //? } else {
+            /*Feature
+            *///? }
+            > configuredFeatureOf(String namespace, String id) {
         //? if >=1.21.2 {
         return ResourceKey.create(
+                //? if < 26.3 {
                 Registries.CONFIGURED_FEATURE,
+                //? } else {
+                /*Registries.FEATURE,
+                *///? }
                 Identifier.fromNamespaceAndPath(namespace, id)
         );
         //?} else {

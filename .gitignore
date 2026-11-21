@@ -2,6 +2,7 @@
 run/
 
 # gradle
+.env
 secrets.gradle
 .kotlin/
 .gradle/

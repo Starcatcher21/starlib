@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-//? if >= 26.2 {
+//? if >= 26.1 {
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.Identifier;
@@ -28,7 +28,7 @@ import net.minecraft.resources.Identifier;
 @Mixin(SplashManager.class)
 public class SplashTextMixin {
 
-    //? if >= 26.2 {
+    //? if >= 26.1 {
     @Unique
     private static final Style PORTAL_STYLE = Style.EMPTY.withColor(0x0000FF);
     @Unique
@@ -61,7 +61,7 @@ public class SplashTextMixin {
         og.add(Component.literal("Bloody Eyes Looking For You").withStyle(BLOOD_STYLE));
         cir.setReturnValue(og);
     }
-//? } else {
+    //? } else {
     /*@Shadow
     @Final
     private static ResourceLocation SPLASHES_LOCATION;

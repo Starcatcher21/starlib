@@ -14,10 +14,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-//? if >=1.21.1 <26.2 {
+//? if >=1.21.1 <26.1 {
 /*import net.minecraft.resources.ResourceLocation;
 import net.minecraft.client.renderer.RenderType;
- *///?} else if >=26.2 {
+ *///?} else if >=26.1 {
 import net.minecraft.world.entity.player.PlayerSkin;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
@@ -29,7 +29,7 @@ import net.minecraft.resources.Identifier;
 @Mixin(CapeLayer.class)
 public abstract class CapeMixin {
 
-    //? if >=26.2 {
+    //? if >=26.1 {
     @Shadow
     @Final
     private HumanoidModel<AvatarRenderState> model;
@@ -38,7 +38,7 @@ public abstract class CapeMixin {
     protected abstract boolean hasLayer(ItemStack stack, EquipmentClientInfo.LayerType layerType);
     //?}
 
-    //? if >=1.21.1 <26.2 {
+    //? if >=1.21.1 <26.1 {
     /*@Redirect(
             method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/client/player/AbstractClientPlayer;FFFFFF)V",
             at = @At(
@@ -49,7 +49,7 @@ public abstract class CapeMixin {
     private RenderType enableCapeTransparency(ResourceLocation texture) {
         return RenderType.entityTranslucent(texture);
     }
-    *///?} else if >=26.2 {
+    *///?} else if >=26.1 {
     @Inject(
             method = "submit(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;ILnet/minecraft/client/renderer/entity/state/AvatarRenderState;FF)V",
             at = @At("HEAD"),
@@ -79,8 +79,10 @@ public abstract class CapeMixin {
                             RenderTypes.entityTranslucent(skinTextures.cape().texturePath()),
                             i,
                             OverlayTexture.NO_OVERLAY,
-                            playerEntityRenderState.outlineColor,
-                            null
+                            playerEntityRenderState.outlineColor
+                            //? if < 26.3 {
+                            , null
+                            //? }
                     );
                     matrixStack.popPose();
                 }

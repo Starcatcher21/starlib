@@ -5,7 +5,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
-//? if >=26.2 {
+//? if >=26.1 {
 import net.minecraft.resources.Identifier;
 //? } else {
 /*import net.minecraft.resources.ResourceLocation;
@@ -27,7 +27,7 @@ public abstract class CobblegenDataProvider implements DataProvider {
         this.registriesFuture = registriesFuture;
     }
 
-    //? if >= 26.2 {
+    //? if >= 26.1 {
     protected abstract void addCobblegen(BiConsumer<Identifier, CobbleGen> exporter, HolderLookup.Provider registries);
     //? } else {
     /*protected abstract void addCobblegen(BiConsumer<ResourceLocation, CobbleGen> exporter, HolderLookup.Provider registries);

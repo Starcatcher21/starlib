@@ -22,7 +22,7 @@ public abstract class SkinMixin {
 
     @Inject(method = "getSkin", at = @At("HEAD"), cancellable = true)
     private void skins(CallbackInfoReturnable cir) {
-        //? >= 26.2 {
+        //? >= 26.1 {
         String uuid = this.profile.id().toString();
         //? } else {
         /*String uuid = this.profile.getId().toString();

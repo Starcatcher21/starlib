@@ -4,7 +4,7 @@ import com.github.starcatcher21.starlib.Starlib;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import net.minecraft.client.Minecraft;
-//? if >= 26.2 {
+//? if >= 26.1 {
 import net.minecraft.client.renderer.texture.SkinTextureDownloader;
 import net.minecraft.core.ClientAsset;
 import net.minecraft.resources.Identifier;
@@ -34,7 +34,7 @@ public class SkinManager {
     private static final HttpClient CLIENT = HttpClient.newHttpClient();
     private static final Gson GSON = new Gson();
 
-    //? if >= 26.2 {
+    //? if >= 26.1 {
     private static final SkinTextureDownloader pstd = new SkinTextureDownloader(
             Proxy.NO_PROXY,
             Minecraft.getInstance().getTextureManager(),
@@ -69,7 +69,7 @@ public class SkinManager {
             return;
         }
 
-        //? if >= 26.2 {
+        //? if >= 26.1 {
         Identifier skinIdentifier = Identifier.fromNamespaceAndPath(Starlib.MOD_ID, "skins/" + uuid.toLowerCase());
         Identifier capeIdentifier = Identifier.fromNamespaceAndPath(Starlib.MOD_ID, "capes/" + uuid.toLowerCase());
         //? } else {
@@ -77,7 +77,7 @@ public class SkinManager {
         ResourceLocation capeIdentifier = ResourceLocation.fromNamespaceAndPath(Starlib.MOD_ID, "capes/" + uuid.toLowerCase());
         *///? }
 
-        //? if >= 26.2 {
+        //? if >= 26.1 {
         CompletableFuture<ClientAsset.Texture> skinFuture = pstd.downloadAndRegisterSkin(
                 skinIdentifier,
                 cacheDir.resolve(uuid + "_skin.png"),
@@ -94,6 +94,10 @@ public class SkinManager {
 
         try {
             Path skinFile = cacheDir.resolve(uuid + "_skin.png");
+            if (!Files.exists(skinFile) && entry.skin != null && !entry.skin.isEmpty()) {
+                downloadFile(entry.skin, skinFile);
+            }
+
             if (Files.exists(skinFile)) {
                 NativeImage skinImage = NativeImage.read(Files.newInputStream(skinFile));
                 Minecraft.getInstance().getTextureManager().register(
@@ -103,6 +107,10 @@ public class SkinManager {
             }
 
             Path capeFile = cacheDir.resolve(uuid + "_cape.png");
+            if (entry.cape != null && !entry.cape.isEmpty() && !Files.exists(capeFile)) {
+                downloadFile(entry.cape, capeFile);
+            }
+
             if (entry.cape != null && !entry.cape.isEmpty() && Files.exists(capeFile)) {
                 NativeImage capeImage = NativeImage.read(Files.newInputStream(capeFile));
                 Minecraft.getInstance().getTextureManager().register(
@@ -119,7 +127,7 @@ public class SkinManager {
         *///? }
 
         CompletableFuture.runAsync(() -> {
-            //? if >= 26.2 {
+            //? if >= 26.1 {
             PlayerSkin textures = new PlayerSkin(
                     skinFuture.join(),
                     capeFuture.join(),
@@ -141,6 +149,35 @@ public class SkinManager {
             CACHE.put(uuid, textures);
         });
     }
+
+    //? if < 26.1 {
+    /*private static void downloadFile(String url, Path destination) throws IOException {
+        if (url == null || url.isEmpty()) return;
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET()
+                .build();
+
+        HttpResponse<Path> response;
+        try {
+            response = CLIENT.send(
+                    request,
+                    HttpResponse.BodyHandlers.ofFile(destination)
+            );
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            Files.deleteIfExists(destination);
+            throw new IOException("Interrupted while downloading skin from " + url, e);
+        }
+
+        if (response.statusCode() != 200) {
+            Files.deleteIfExists(destination);
+            throw new IOException("Failed to download skin from " + url
+                    + ": HTTP " + response.statusCode());
+        }
+    }
+    *///? }
 
     public static class PlayerEntry {
         public String skin, cape;

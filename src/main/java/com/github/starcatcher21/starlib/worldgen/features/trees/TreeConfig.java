@@ -5,9 +5,15 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import java.util.List;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.level.block.state.BlockState;
+//? if < 26.3 {
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+//? }
 
-public class TreeConfig implements FeatureConfiguration {
+public class TreeConfig
+        //? if < 26.3 {
+        implements FeatureConfiguration
+        //? }
+{
     public final List<String> NAMES;
     public final List<BlockState> growOn;
     public final Boolean BLACKLIST;

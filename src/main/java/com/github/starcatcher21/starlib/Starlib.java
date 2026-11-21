@@ -17,21 +17,21 @@ public class Starlib {
             var registryManager = server.registryAccess();
 
             //? if >= 26.2 {
-            Registry<CobbleGen> cobbleGens = registryManager.lookupOrThrow(RegistryKeys.COBBLE_GEN);
+            /*Registry<CobbleGen> cobbleGens = registryManager.lookupOrThrow(RegistryKeys.COBBLE_GEN);
             Registry<FallingObject> fallingObjects = registryManager.lookupOrThrow(RegistryKeys.FALLING_OBJECTS);
             Registry<FallingObjectsList> fallingObjectsList = registryManager.lookupOrThrow(RegistryKeys.FALLING_OBJECTS_LIST);
 
             LOGGER.info("Loaded: " + cobbleGens.keySet().size() + " Cobble Gens");
             LOGGER.info("Loaded: " + fallingObjects.keySet().size() + " Falling Objects");
             LOGGER.info("Loaded: " + fallingObjectsList.keySet().size() + " Falling Objects Lists");
-            //? } else {
-            /*var cobble = registryManager.lookupOrThrow(RegistryKeys.COBBLE_GEN);
+            *///? } else {
+            var cobble = registryManager.lookupOrThrow(RegistryKeys.COBBLE_GEN);
             var fall = registryManager.lookupOrThrow(RegistryKeys.FALLING_OBJECTS);
             var fall_list = registryManager.lookupOrThrow(RegistryKeys.FALLING_OBJECTS_LIST);
             LOGGER.info("Loaded: " + cobble.listElements().count() + " Cobble Gens");
             LOGGER.info("Loaded: " + fall.listElements().count() + " Falling Objects");
             LOGGER.info("Loaded: " + fall_list.listElements().count() + " Falling Objects Lists");
-            *///? }
+            //? }
         });
     }
 }

@@ -4,7 +4,7 @@ import com.github.starcatcher21.starlib.mechanics.Generators.CobbleGen;
 import com.github.starcatcher21.starlib.mechanics.star.FallingObject;
 import com.github.starcatcher21.starlib.mechanics.star.FallingObjectsList;
 import net.minecraft.core.Registry;
-//? if >= 26.2 {
+//? if >= 26.1 {
 import net.minecraft.resources.Identifier;
 //? } else {
 /*import net.minecraft.resources.ResourceLocation;
@@ -12,7 +12,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 
 public class RegistryKeys {
-    //? if >= 26.2 {
+    //? if >= 26.1 {
     public static final ResourceKey<Registry<CobbleGen>> COBBLE_GEN =
             ResourceKey.createRegistryKey(Identifier.fromNamespaceAndPath(Starlib.MOD_ID, "cobblegen"));
 
